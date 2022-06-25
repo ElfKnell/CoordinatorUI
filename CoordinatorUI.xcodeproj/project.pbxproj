@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C6CF7D4E28666FB4000C4B1E /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CF7D4D28666FB4000C4B1E /* Location.swift */; };
 		C6D5D73D2865247D00C66EF0 /* CoordinatorUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D5D73C2865247D00C66EF0 /* CoordinatorUIApp.swift */; };
 		C6D5D73F2865247D00C66EF0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D5D73E2865247D00C66EF0 /* ContentView.swift */; };
 		C6D5D7412865247F00C66EF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6D5D7402865247F00C66EF0 /* Assets.xcassets */; };
@@ -14,6 +15,10 @@
 		C6D5D74E2865247F00C66EF0 /* CoordinatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D5D74D2865247F00C66EF0 /* CoordinatorUITests.swift */; };
 		C6D5D7582865247F00C66EF0 /* CoordinatorUIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D5D7572865247F00C66EF0 /* CoordinatorUIUITests.swift */; };
 		C6D5D75A2865247F00C66EF0 /* CoordinatorUIUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D5D7592865247F00C66EF0 /* CoordinatorUIUITestsLaunchTests.swift */; };
+		C6D5D76828652B3700C66EF0 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D5D76728652B3700C66EF0 /* Chat.swift */; };
+		C6D5D76A28652BAA00C66EF0 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D5D76928652BAA00C66EF0 /* Message.swift */; };
+		C6D5D76D28652CD600C66EF0 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D5D76C28652CD600C66EF0 /* ChatService.swift */; };
+		C6D5D775286543B900C66EF0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D5D774286543B900C66EF0 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C6CF7D4D28666FB4000C4B1E /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		C6D5D7392865247D00C66EF0 /* CoordinatorUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoordinatorUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6D5D73C2865247D00C66EF0 /* CoordinatorUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorUIApp.swift; sourceTree = "<group>"; };
 		C6D5D73E2865247D00C66EF0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -44,6 +50,10 @@
 		C6D5D7532865247F00C66EF0 /* CoordinatorUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoordinatorUIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6D5D7572865247F00C66EF0 /* CoordinatorUIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorUIUITests.swift; sourceTree = "<group>"; };
 		C6D5D7592865247F00C66EF0 /* CoordinatorUIUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorUIUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C6D5D76728652B3700C66EF0 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		C6D5D76928652BAA00C66EF0 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		C6D5D76C28652CD600C66EF0 /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
+		C6D5D774286543B900C66EF0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +104,8 @@
 		C6D5D73B2865247D00C66EF0 /* CoordinatorUI */ = {
 			isa = PBXGroup;
 			children = (
+				C6D5D76B28652C7700C66EF0 /* ViewModels */,
+				C6D5D76628652B1100C66EF0 /* Models */,
 				C6D5D73C2865247D00C66EF0 /* CoordinatorUIApp.swift */,
 				C6D5D73E2865247D00C66EF0 /* ContentView.swift */,
 				C6D5D7402865247F00C66EF0 /* Assets.xcassets */,
@@ -125,6 +137,25 @@
 				C6D5D7592865247F00C66EF0 /* CoordinatorUIUITestsLaunchTests.swift */,
 			);
 			path = CoordinatorUIUITests;
+			sourceTree = "<group>";
+		};
+		C6D5D76628652B1100C66EF0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C6D5D76728652B3700C66EF0 /* Chat.swift */,
+				C6D5D76928652BAA00C66EF0 /* Message.swift */,
+				C6D5D774286543B900C66EF0 /* User.swift */,
+				C6CF7D4D28666FB4000C4B1E /* Location.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C6D5D76B28652C7700C66EF0 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				C6D5D76C28652CD600C66EF0 /* ChatService.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,7 +289,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6D5D73F2865247D00C66EF0 /* ContentView.swift in Sources */,
+				C6D5D76A28652BAA00C66EF0 /* Message.swift in Sources */,
+				C6D5D76828652B3700C66EF0 /* Chat.swift in Sources */,
+				C6D5D76D28652CD600C66EF0 /* ChatService.swift in Sources */,
+				C6D5D775286543B900C66EF0 /* User.swift in Sources */,
 				C6D5D73D2865247D00C66EF0 /* CoordinatorUIApp.swift in Sources */,
+				C6CF7D4E28666FB4000C4B1E /* Location.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,6 +456,7 @@
 				DEVELOPMENT_TEAM = DBL7348NTB;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "We need to unlock your data.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -449,6 +486,7 @@
 				DEVELOPMENT_TEAM = DBL7348NTB;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "We need to unlock your data.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
