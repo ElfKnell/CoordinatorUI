@@ -9,10 +9,6 @@ import SwiftUI
 import MapKit
 import LocalAuthentication
 
-//let chats = [Chat(title: "he", subtitle: "How are you?"),
-//             Chat(title: "fine", subtitle: "I'm fine"),
-//             Chat(title: "You", subtitle: "and how are you?")]
-
 struct ContentView: View {
     
     @State private var isUnlocked = true
@@ -21,12 +17,31 @@ struct ContentView: View {
     
     @State private var locations = [Location]()
     
+    @State private var selectedPlace: Location?
+    
     var body: some View {
         VStack {
             if isUnlocked {
                 ZStack {
                     Map(coordinateRegion: $mapRegion, annotationItems: locations) { location in
-                        MapMarker(coordinate: location.coordinate)
+                        MapAnnotation(coordinate: location.coordinate) {
+                            VStack(spacing: 0) {
+                                  Image(systemName: "mappin.circle.fill")
+                                    .font(.title)
+                                    .foregroundColor(.red)
+                                  
+                                  Image(systemName: "arrowtriangle.down.fill")
+                                    .font(.caption)
+                                    .foregroundColor(.red)
+                                    .offset(x: 0, y: -5)
+                                
+                                Text(location.name)
+                                    .fixedSize()
+                                }
+                            .onTapGesture {
+                                selectedPlace = location
+                            }
+                        }
                     }
                         .ignoresSafeArea()
                     Circle()
@@ -38,6 +53,14 @@ struct ContentView: View {
                         
                         HStack {
                             Spacer()
+                            
+                            Button {
+                                for i in locations {
+                                    print(i.id)
+                                }
+                            } label: {
+                                Image(systemName: "plus")
+                            }
                             
                             Button {
                                 let newLocation = Location(id: UUID(), name: "New location", description: "unknown", latitude: mapRegion.center.latitude, longitude: mapRegion.center.longitude)
@@ -54,6 +77,13 @@ struct ContentView: View {
                         }
                     }
                 }
+                .sheet(item: $selectedPlace) { place in
+                    EditView(location: place) { newLocation in
+                        if let index = locations.firstIndex(of: place) {
+                            locations[index] = newLocation
+                        }
+                    }
+                }
                 
             } else {
                 Text("Locked")
@@ -61,12 +91,6 @@ struct ContentView: View {
         }
         .onAppear(perform: authenticate)
         
-        
-//        List(chats) {
-//            chat in
-//            Text("\(chat.id) \(chat.title) \(chat.subtitle)")
-//        }
-//            .padding()
     }
     
     func authenticate() {
