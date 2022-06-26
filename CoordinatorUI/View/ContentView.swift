@@ -10,20 +10,13 @@ import MapKit
 import LocalAuthentication
 
 struct ContentView: View {
-    
-    @State private var isUnlocked = true
-    
-    @State private var mapRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 50.0, longitude: -70.0), span: MKCoordinateSpan(latitudeDelta: 20, longitudeDelta: 20))
-    
-    @State private var locations = [Location]()
-    
-    @State private var selectedPlace: Location?
+    @StateObject private var viewModel = ViewModel()
     
     var body: some View {
         VStack {
-            if isUnlocked {
+            if viewModel.isUnlocked {
                 ZStack {
-                    Map(coordinateRegion: $mapRegion, annotationItems: locations) { location in
+                    Map(coordinateRegion: $viewModel.mapRegion, annotationItems: viewModel.locations) { location in
                         MapAnnotation(coordinate: location.coordinate) {
                             VStack(spacing: 0) {
                                   Image(systemName: "mappin.circle.fill")
@@ -39,7 +32,7 @@ struct ContentView: View {
                                     .fixedSize()
                                 }
                             .onTapGesture {
-                                selectedPlace = location
+                                viewModel.selectedPlace = location
                             }
                         }
                     }
@@ -55,7 +48,7 @@ struct ContentView: View {
                             Spacer()
                             
                             Button {
-                                for i in locations {
+                                for i in viewModel.locations {
                                     print(i.id)
                                 }
                             } label: {
@@ -63,8 +56,7 @@ struct ContentView: View {
                             }
                             
                             Button {
-                                let newLocation = Location(id: UUID(), name: "New location", description: "unknown", latitude: mapRegion.center.latitude, longitude: mapRegion.center.longitude)
-                                locations.append(newLocation)
+                                viewModel.addLocation()
                             } label: {
                                 Image(systemName: "plus")
                             }
@@ -77,11 +69,9 @@ struct ContentView: View {
                         }
                     }
                 }
-                .sheet(item: $selectedPlace) { place in
+                .sheet(item: $viewModel.selectedPlace) { place in
                     EditView(location: place) { newLocation in
-                        if let index = locations.firstIndex(of: place) {
-                            locations[index] = newLocation
-                        }
+                        viewModel.updateLocation(location: newLocation)
                     }
                 }
                 
@@ -102,9 +92,9 @@ struct ContentView: View {
             
             context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
                 if success {
-                    isUnlocked = true
+                    viewModel.isUnlocked = true
                 } else {
-                    isUnlocked = false
+                    viewModel.isUnlocked = false
                     print(authenticationError?.localizedDescription ?? "Fatal error")
                 }
             }
