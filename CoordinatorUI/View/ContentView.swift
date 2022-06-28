@@ -7,7 +7,7 @@
 
 import SwiftUI
 import MapKit
-import LocalAuthentication
+
 
 struct ContentView: View {
     @StateObject private var viewModel = ViewModel()
@@ -76,27 +76,24 @@ struct ContentView: View {
                 }
                 
             } else {
-                Text("Locked")
-            }
-        }
-        .onAppear(perform: authenticate)
-        
-    }
-    
-    func authenticate() {
-        let context = LAContext()
-        var error: NSError?
-        
-        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
-            let reason = "We need unlock your data."
-            
-            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
-                if success {
-                    viewModel.isUnlocked = true
-                } else {
-                    viewModel.isUnlocked = false
-                    print(authenticationError?.localizedDescription ?? "Fatal error")
+                VStack {
+                    Spacer()
+                    
+                    Text("Locked")
+                    
+                    Spacer()
+                    
+                    Button("Unlock places") {
+                        viewModel.authenticate()
+                    }
+                    .padding()
+                    .background(.blue)
+                    .foregroundColor(.white)
+                    .clipShape(Capsule())
+                    
+                    Spacer()
                 }
+                
             }
         }
     }

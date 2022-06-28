@@ -14,14 +14,14 @@ struct EditView: View {
     }
     
     @Environment(\.dismiss) var dismiss
+    
     var location: Location
     var onSave: (Location) -> Void
     
+    @StateObject private var editModel = EditModel()
+    
     @State private var name: String
     @State private var description: String
-    
-    @State private var loadingState = LoadingState.loading
-    @State private var pages = [Page]()
     
     var body: some View {
         NavigationView {
@@ -32,11 +32,11 @@ struct EditView: View {
                 }
                 
                 Section("Nearby...") {
-                    switch loadingState {
+                    switch editModel.loadingState {
                     case .loading:
                         Text("Loading...")
                     case .loaded:
-                        ForEach(pages, id: \.pageid) { page in
+                        ForEach(editModel.pages, id: \.pageid) { page in
                             Text(page.title)
                                 .font(.headline)
                             + Text(": ")
@@ -61,7 +61,7 @@ struct EditView: View {
                 }
             }
             .task {
-                await fetchNearbyPlaces()
+                await editModel.fetchNearbyPlaces(location: location)
             }
         }
     }
@@ -72,23 +72,9 @@ struct EditView: View {
         
         _name = State(initialValue: location.name)
         _description = State(initialValue: location.description)
+        print(location.name)
     }
     
-    func fetchNearbyPlaces() async {
-        let urlString = "https://en.wikipedia.org/w/api.php?ggscoord=\(location.coordinate.latitude)%7C\(location.coordinate.longitude)&action=query&prop=coordinates%7Cpageimages%7Cpageterms&colimit=50&piprop=thumbnail&pithumbsize=500&pilimit=50&wbptterms=description&generator=geosearch&ggsradius=10000&ggslimit=50&format=json"
-        guard let url = URL(string: urlString) else {
-            print("Bad URL")
-            return
-        }
-        do {
-            let (data, _) = try await URLSession.shared.data(from: url)
-            let items = try JSONDecoder().decode(Result.self, from: data)
-            pages = items.query.pages.values.sorted()
-            loadingState = .loaded
-        } catch {
-            loadingState = .failed
-        }
-    }
 }
 
 struct EditView_Previews: PreviewProvider {

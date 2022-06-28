@@ -9,7 +9,7 @@ import Foundation
 
 protocol ChatService {
     
-    var currentUser: String? { get }
+    var currentUser: User { get }
     
     func fetchChats() -> [Chat]
     func fetchMessages() -> [Message]
