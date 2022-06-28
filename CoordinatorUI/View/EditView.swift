@@ -72,7 +72,6 @@ struct EditView: View {
         
         _name = State(initialValue: location.name)
         _description = State(initialValue: location.description)
-        print(location.name)
     }
     
 }

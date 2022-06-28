@@ -19,6 +19,9 @@ extension ContentView {
         
         @Published var selectedPlace: Location?
         
+        @Published var latitude: String = ""
+        @Published var longitude: String = ""
+        
         let savePath = FileManager.documentsDirectory.appendingPathComponent("SavedPlaces")
         
         init() {
@@ -74,6 +77,21 @@ extension ContentView {
                         }
                     }
                 }
+            }
+        }
+        
+        func changeLocation() {
+            
+            guard let lat = Double(latitude) else {
+                return
+            }
+            guard let lon = Double(longitude) else {
+                return
+            }
+            if (lat < -90.0 || lat > 90.0) || (lon < -180.0 || lon > 180.0) {
+                return
+            } else {
+                mapRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: lat, longitude: lon), span: MKCoordinateSpan(latitudeDelta: 20, longitudeDelta: 20))
             }
         }
     }

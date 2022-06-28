@@ -42,18 +42,40 @@ struct ContentView: View {
                         .opacity(0.3)
                         .frame(width: 30, height: 30)
                     VStack {
+                        HStack {
+                            
+                            Spacer()
+                            
+                            TextField("Latitude", text: $viewModel.latitude)
+                                .font(.title)
+                                .textFieldStyle(.roundedBorder)
+                            
+                            Spacer()
+                            
+                            TextField("Longitude", text: $viewModel.longitude)
+                                .font(.title)
+                                .textFieldStyle(.roundedBorder)
+                            
+                            Spacer()
+                            
+                            Button {
+                                viewModel.changeLocation()
+                            } label: {
+                                Image(systemName: "paperplane.fill")
+                            }
+                            .padding()
+                            .background(.black.opacity(0.75))
+                            .foregroundColor(.white)
+                            .font(.title)
+                            .clipShape(Circle())
+                            
+                            Spacer()
+                        }
+                        
                         Spacer()
                         
                         HStack {
                             Spacer()
-                            
-                            Button {
-                                for i in viewModel.locations {
-                                    print(i.id)
-                                }
-                            } label: {
-                                Image(systemName: "plus")
-                            }
                             
                             Button {
                                 viewModel.addLocation()
