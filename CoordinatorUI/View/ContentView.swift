@@ -13,6 +13,7 @@ struct ContentView: View {
     @StateObject private var viewModel = ViewModel()
     
     var body: some View {
+        NavigationView {
         VStack {
             if viewModel.isUnlocked {
                 ZStack {
@@ -75,6 +76,12 @@ struct ContentView: View {
                         Spacer()
                         
                         HStack {
+                            
+                            NavigationLink(destination: PhotoView()) {
+                                Text("Choose Photo")
+                            }
+                            .navigationBarTitleDisplayMode(.inline)
+                            
                             Spacer()
                             
                             Button {
@@ -120,7 +127,8 @@ struct ContentView: View {
         }
     }
 }
-
+}
+    
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
