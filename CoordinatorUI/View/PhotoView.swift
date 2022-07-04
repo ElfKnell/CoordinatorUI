@@ -12,31 +12,31 @@ struct PhotoView: View {
     @State private var isShovingPhotoPicker = false
     @State private var image = UIImage(named: "logo")!
     @State private var images = [UIImage]()
-
+    @State private var indexC = 0
     
     var body: some View {
         NavigationView {
             VStack {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
-                        Section() {
+                        
                             if !images.isEmpty {
-                                //ForEach(0..<images.count) { i in
-                                    Image(uiImage: images[0])
+                                
+                                ForEach(0..<indexC, id:\.self) { index in
+                                    Image(uiImage: images[index])
                                         .resizable()
                                         .scaledToFit()
-                                //}
+                                }
  
                             } else {
                                 Image(systemName: "photo.fill")
                                     .resizable()
                                     .scaledToFit()
-                                    .tag(4)
                                     .onTapGesture {
-                                        image = UIImage(named: "logo")!
+                                        image = UIImage(systemName: "photo.fill")!
                                     }
                             }
-                        }
+                        
                     }
                 }
                 .frame(height: 140)
@@ -47,10 +47,11 @@ struct PhotoView: View {
                     .resizable()
                     .scaledToFit()
                     .zoomable(scale: $scale)
-                    .onTapGesture {
-                        isShovingPhotoPicker = true
-                        images.append(image)
-                    }
+//                    .onTapGesture {
+//                        isShovingPhotoPicker = true
+//                        images.append(image)
+//                        indexC += 1
+//                    }
                 
                 Spacer()
                 
@@ -68,6 +69,8 @@ struct PhotoView: View {
                     Button {
                         isShovingPhotoPicker = true
                         images.append(image)
+                        indexC += 1
+                        print(images)
                     } label: {
                         Text("Photos")
                     }
