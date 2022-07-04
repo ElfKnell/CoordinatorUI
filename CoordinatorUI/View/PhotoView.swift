@@ -11,31 +11,87 @@ struct PhotoView: View {
     @State private var scale: CGFloat = 1
     @State private var isShovingPhotoPicker = false
     @State private var image = UIImage(named: "logo")!
+    @State private var images = [UIImage]()
+
     
     var body: some View {
-        VStack {
-              Spacer()
-              Image(uiImage: image)
-                .resizable()
-                .scaledToFit()
-                .zoomable(scale: $scale)
-                .onTapGesture {
-                    isShovingPhotoPicker = true
+        NavigationView {
+            VStack {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack {
+                        Section() {
+                            if !images.isEmpty {
+                                //ForEach(0..<images.count) { i in
+                                    Image(uiImage: images[0])
+                                        .resizable()
+                                        .scaledToFit()
+                                //}
+ 
+                            } else {
+                                Image(systemName: "photo.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .tag(4)
+                                    .onTapGesture {
+                                        image = UIImage(named: "logo")!
+                                    }
+                            }
+                        }
+                    }
                 }
-            
-              Spacer()
-              HStack {
-                Button("Reset") {
-                  scale = 1
-                }
+                .frame(height: 140)
+
                 Spacer()
-                Text("Zoom: \(String(format: "%.02f", scale * 100) )%")
-              }
-              .padding()
+                
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFit()
+                    .zoomable(scale: $scale)
+                    .onTapGesture {
+                        isShovingPhotoPicker = true
+                        images.append(image)
+                    }
+                
+                Spacer()
+                
+                HStack{
+                    Spacer()
+                    
+                    Button {
+                        print(images.count)
+                    } label: {
+                        Text("Camera")
+                    }
+                    
+                    Spacer()
+                    
+                    Button {
+                        isShovingPhotoPicker = true
+                        images.append(image)
+                    } label: {
+                        Text("Photos")
+                    }
+                    
+                    Spacer()
+                }
+                
+                Spacer()
+                
+                HStack {
+                    Button("Reset") {
+                      scale = 1
+                    }
+                    Spacer()
+                    Text("Zoom: \(String(format: "%.02f", scale * 100) )%")
+                }
+                .padding()
             }
-        .sheet(isPresented: $isShovingPhotoPicker) {
-            PhotoPicker(image: $image)
+            .navigationBarHidden(true)
+            .sheet(isPresented: $isShovingPhotoPicker) {
+                PhotoPicker(image: $image)
+            }
         }
+        
     }
 }
 
