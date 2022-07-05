@@ -8,11 +8,8 @@
 import SwiftUI
 
 struct PhotoView: View {
-    @State private var scale: CGFloat = 1
-    @State private var isShovingPhotoPicker = false
-    @State private var image = UIImage(named: "logo")!
-    @State private var images = [UIImage]()
-    @State private var indexC = 0
+    
+    @StateObject private var photoModel = PhotoModel()
     
     var body: some View {
         NavigationView {
@@ -20,12 +17,15 @@ struct PhotoView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         
-                            if !images.isEmpty {
+                        if !photoModel.images.isEmpty {
                                 
-                                ForEach(0..<indexC, id:\.self) { index in
-                                    Image(uiImage: images[index])
+                            ForEach(0..<photoModel.indexC, id:\.self) { index in
+                                Image(uiImage: photoModel.images[index])
                                         .resizable()
                                         .scaledToFit()
+                                        .onTapGesture {
+                                            photoModel.image = photoModel.images[index]
+                                        }
                                 }
  
                             } else {
@@ -33,7 +33,7 @@ struct PhotoView: View {
                                     .resizable()
                                     .scaledToFit()
                                     .onTapGesture {
-                                        image = UIImage(systemName: "photo.fill")!
+                                        photoModel.image = UIImage(systemName: "photo.fill")!
                                     }
                             }
                         
@@ -43,10 +43,10 @@ struct PhotoView: View {
 
                 Spacer()
                 
-                Image(uiImage: image)
+                Image(uiImage: photoModel.image)
                     .resizable()
                     .scaledToFit()
-                    .zoomable(scale: $scale)
+                    .zoomable(scale: $photoModel.scale)
 //                    .onTapGesture {
 //                        isShovingPhotoPicker = true
 //                        images.append(image)
@@ -59,18 +59,22 @@ struct PhotoView: View {
                     Spacer()
                     
                     Button {
-                        print(images.count)
+                        photoModel.isShovingPhotoPicker = true
+                        photoModel.status = .camera
+                        photoModel.images.append(photoModel.image)
+                        photoModel.indexC += 1
                     } label: {
                         Text("Camera")
+                        
                     }
                     
                     Spacer()
                     
                     Button {
-                        isShovingPhotoPicker = true
-                        images.append(image)
-                        indexC += 1
-                        print(images)
+                        photoModel.isShovingPhotoPicker = true
+                        photoModel.status = .photo
+                        photoModel.images.append(photoModel.image)
+                        photoModel.indexC += 1
                     } label: {
                         Text("Photos")
                     }
@@ -82,16 +86,22 @@ struct PhotoView: View {
                 
                 HStack {
                     Button("Reset") {
-                      scale = 1
+                        photoModel.scale = 1
                     }
                     Spacer()
-                    Text("Zoom: \(String(format: "%.02f", scale * 100) )%")
+                    Text("Zoom: \(String(format: "%.02f", photoModel.scale * 100) )%")
                 }
                 .padding()
             }
             .navigationBarHidden(true)
-            .sheet(isPresented: $isShovingPhotoPicker) {
-                PhotoPicker(image: $image)
+            .sheet(isPresented: $photoModel.isShovingPhotoPicker) {
+                switch photoModel.status {
+                case .photo:
+                    PhotoPicker(image: $photoModel.image, sourceType: .photoLibrary)
+                case .camera:
+                    PhotoPicker(image: $photoModel.image, sourceType: .camera)
+                }
+                
             }
         }
         
