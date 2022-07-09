@@ -12,6 +12,9 @@ struct CoordinatorUIApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .onAppear {
+                    UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutUnsatisfiable")
+                }
         }
     }
 }

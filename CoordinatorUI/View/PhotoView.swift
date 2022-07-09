@@ -59,10 +59,7 @@ struct PhotoView: View {
                     Spacer()
                     
                     Button {
-                        photoModel.isShovingPhotoPicker = true
-                        photoModel.status = .camera
-                        photoModel.images.append(photoModel.image)
-                        photoModel.indexC += 1
+                        photoModel.addPhoto(status: .camera)
                     } label: {
                         Text("Camera")
                         
@@ -71,10 +68,7 @@ struct PhotoView: View {
                     Spacer()
                     
                     Button {
-                        photoModel.isShovingPhotoPicker = true
-                        photoModel.status = .photo
-                        photoModel.images.append(photoModel.image)
-                        photoModel.indexC += 1
+                        photoModel.addPhoto(status: .photo)
                     } label: {
                         Text("Photos")
                     }
@@ -95,13 +89,8 @@ struct PhotoView: View {
             }
             .navigationBarHidden(true)
             .sheet(isPresented: $photoModel.isShovingPhotoPicker) {
-                switch photoModel.status {
-                case .photo:
-                    PhotoPicker(image: $photoModel.image, sourceType: .photoLibrary)
-                case .camera:
-                    PhotoPicker(image: $photoModel.image, sourceType: .camera)
-                }
-                
+                    PhotoPicker(image: $photoModel.image, sourceType: photoModel.status == .photo ? .photoLibrary : .camera)
+                    .ignoresSafeArea()
             }
         }
         
