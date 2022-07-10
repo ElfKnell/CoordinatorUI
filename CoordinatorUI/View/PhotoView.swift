@@ -92,6 +92,12 @@ struct PhotoView: View {
                     PhotoPicker(image: $photoModel.image, sourceType: photoModel.status == .photo ? .photoLibrary : .camera)
                     .ignoresSafeArea()
             }
+            .alert("Error", isPresented: $photoModel.showCameraAlert, presenting: photoModel.cameraError) { cameraError in
+                cameraError.button
+            } message: { cameraError in
+                Text(cameraError.message)
+            }
+
         }
         
     }
