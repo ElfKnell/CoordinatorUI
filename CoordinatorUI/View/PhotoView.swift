@@ -55,32 +55,65 @@ struct PhotoView: View {
                 
                 Spacer()
                 
-                HStack{
-                    Spacer()
+                VStack {
+                    TextField("Image name", text: $photoModel.imageName) { isEditing in
+                        photoModel.isEditing = isEditing
+                    }
+                        .textFieldStyle(.roundedBorder)
                     
-                    Button {
-                        photoModel.addPhoto(status: .camera)
-                    } label: {
-                        Text("Camera")
+                    HStack {
+                        Spacer()
                         
+                        Button {
+                            if photoModel.selectedImage == nil {
+                                photoModel.addMyImage(photoModel.imageName, image: photoModel.image)
+                            }
+                        } label: {
+                            ButtonLabel(symbolLabel: photoModel.selectedImage == nil ? "square.and.arrow.down.fill" : "square.and.arrow.up.fill", label: photoModel.selectedImage == nil ? "Save" : "Update")
+                        }
+                        .disabled(photoModel.buttonDisabled)
+                        .opacity(photoModel.buttonDisabled ? 0.6 : 1)
+                        
+                        Spacer()
+                        
+                        if !photoModel.deleteButtonIsHidden {
+                            Button {
+                                
+                            } label: {
+                                ButtonLabel(symbolLabel: "trash", label: "Delete")
+                            }
+                        }
+                        Spacer()
                     }
                     
-                    Spacer()
-                    
-                    Button {
-                        photoModel.addPhoto(status: .photo)
-                    } label: {
-                        Text("Photos")
+                    HStack {
+                        Spacer()
+                        
+                        Button {
+                            photoModel.addPhoto(status: .camera)
+                        } label: {
+                            ButtonLabel(symbolLabel: "camera", label: "Camera")
+                        }
+                        
+                        Spacer()
+                        
+                        Button {
+                            photoModel.addPhoto(status: .photo)
+                        } label: {
+                            ButtonLabel(symbolLabel: "photo", label: "Photo")
+                        }
+                        
+                        Spacer()
                     }
-                    
-                    Spacer()
                 }
                 
                 Spacer()
                 
                 HStack {
-                    Button("Reset") {
+                    Button {
                         photoModel.scale = 1
+                    } label: {
+                        ButtonLabel(symbolLabel: "gobackward", label: "Reset")
                     }
                     Spacer()
                     Text("Zoom: \(String(format: "%.02f", photoModel.scale * 100) )%")

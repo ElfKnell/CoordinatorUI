@@ -60,17 +60,37 @@ extension PhotoView {
         @Published var status = PhotoOrCamera.photo
         @Published var scale: CGFloat = 1
         @Published var isShovingPhotoPicker = false
-        @Published var image = UIImage(named: "logo")!
+        @Published var image = UIImage(systemName: "photo.fill")!
         @Published var images = [UIImage]()
         @Published var indexC = 0
         @Published var showCameraAlert = false
         @Published var cameraError: PhotoOrCamera.CameraErroreType?
+        @Published var imageName: String = ""
+        @Published var isEditing = false
+        @Published var selectedImage: MyImage?
+        @Published var myImages = [MyImage]()
+        @Published var showFileAlert = false
+        @Published var appError: MyImageError.ErrorType?
+        
+        init() {
+            print(FileManager.documentsDirectory.path)
+        }
+        
+        var buttonDisabled: Bool {
+            imageName.isEmpty || image == UIImage(systemName: "photo.fill")
+        }
+        
+        var deleteButtonIsHidden: Bool {
+            isEditing || selectedImage == nil
+        }
         
         func addPhoto(status: PhotoOrCamera) {
             self.status = status
             showPhotoPicker()
-            images.append(image)
-            indexC += 1
+            if !showCameraAlert {
+                images.append(image)
+                indexC += 1
+            }
         }
         
         func showPhotoPicker() {
@@ -82,6 +102,38 @@ extension PhotoView {
             } catch {
                 showCameraAlert = true
                 cameraError = PhotoOrCamera.CameraErroreType(error: error as! PhotoOrCamera.PickerError)
+            }
+        }
+        
+        func addMyImage(_ name: String, image: UIImage) {
+            imageName = ""
+            let myImage = MyImage(name: name)
+            do {
+                try FileManager().saveImage("\(myImage.id)", image: image)
+                myImages.append(myImage)
+                saveMyImagesJSONFile()
+                images.append(image)
+                indexC += 1
+            } catch {
+                showFileAlert = true
+                appError = MyImageError.ErrorType(error: error as! MyImageError)
+            }
+        }
+        
+        func saveMyImagesJSONFile() {
+            let encoder = JSONEncoder()
+            do {
+                let data = try encoder.encode(myImages)
+                let jsonString = String(decoding: data, as: UTF8.self)
+                do {
+                    try FileManager().saveDocument(contents: jsonString)
+                } catch {
+                    showFileAlert = true
+                    appError = MyImageError.ErrorType(error: error as! MyImageError)
+                }
+            } catch {
+                showFileAlert = true
+                appError = MyImageError.ErrorType(error: .encodingError)
             }
         }
     }
