@@ -83,6 +83,8 @@ extension PhotoView {
         }
         
         func addPhoto(status: PhotoOrCamera) {
+            selectedImage = nil
+            isEditing = false
             self.status = status
             showPhotoPicker()
         }
