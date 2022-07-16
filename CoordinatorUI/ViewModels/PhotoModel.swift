@@ -60,9 +60,7 @@ extension PhotoView {
         @Published var status = PhotoOrCamera.photo
         @Published var scale: CGFloat = 1
         @Published var isShovingPhotoPicker = false
-        @Published var image = UIImage(systemName: "photo.fill")!
-        @Published var images = [UIImage]()
-        @Published var indexC = 0
+        @Published var image: UIImage?     //UIImage(systemName: "photo.fill")!
         @Published var showCameraAlert = false
         @Published var cameraError: PhotoOrCamera.CameraErroreType?
         @Published var imageName: String = ""
@@ -77,7 +75,7 @@ extension PhotoView {
         }
         
         var buttonDisabled: Bool {
-            imageName.isEmpty || image == UIImage(systemName: "photo.fill")
+            imageName.isEmpty || image == nil
         }
         
         var deleteButtonIsHidden: Bool {
@@ -87,10 +85,13 @@ extension PhotoView {
         func addPhoto(status: PhotoOrCamera) {
             self.status = status
             showPhotoPicker()
-            if !showCameraAlert {
-                images.append(image)
-                indexC += 1
-            }
+        }
+        
+        func reset() {
+            imageName = ""
+            image = nil
+            selectedImage = nil
+            isEditing = false
         }
         
         func showPhotoPicker() {
@@ -105,19 +106,40 @@ extension PhotoView {
             }
         }
         
+        func display(_ myImage: MyImage) {
+            image = myImage.image
+            imageName = myImage.name
+            selectedImage = myImage
+        }
+        
+        func updateSelected() {
+            if let index = myImages.firstIndex(where: { $0.id == selectedImage?.id} ) {
+                myImages[index].name = imageName
+                saveMyImagesJSONFile()
+                reset()
+            }
+        }
+        
+        func deleteSelected() {
+            if let index = myImages.firstIndex(where: { $0.id == selectedImage?.id }) {
+                myImages.remove(at: index)
+                saveMyImagesJSONFile()
+                reset()
+            }
+        }
+        
         func addMyImage(_ name: String, image: UIImage) {
-            imageName = ""
+            
             let myImage = MyImage(name: name)
             do {
                 try FileManager().saveImage("\(myImage.id)", image: image)
                 myImages.append(myImage)
                 saveMyImagesJSONFile()
-                images.append(image)
-                indexC += 1
             } catch {
                 showFileAlert = true
                 appError = MyImageError.ErrorType(error: error as! MyImageError)
             }
+            reset()
         }
         
         func saveMyImagesJSONFile() {
@@ -134,6 +156,21 @@ extension PhotoView {
             } catch {
                 showFileAlert = true
                 appError = MyImageError.ErrorType(error: .encodingError)
+            }
+        }
+        
+        func loadMyImageJSONFile() {
+            do {
+                let data = try FileManager().readDocument()
+                do {
+                    myImages = try JSONDecoder().decode([MyImage].self, from: data)
+                } catch {
+                    showFileAlert = true
+                    appError = MyImageError.ErrorType(error: .decodingError)
+                }
+            } catch {
+                showFileAlert = true
+                appError = MyImageError.ErrorType(error: error as! MyImageError)
             }
         }
     }

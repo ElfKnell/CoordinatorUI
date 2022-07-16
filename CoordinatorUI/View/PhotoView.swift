@@ -9,101 +9,24 @@ import SwiftUI
 
 struct PhotoView: View {
     
-    @StateObject private var photoModel = PhotoModel()
+    @StateObject var photoModel = PhotoModel()
+    @FocusState var nameField: Bool
     
     var body: some View {
         NavigationView {
             VStack {
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack {
-                        
-                        if !photoModel.images.isEmpty {
-                                
-                            ForEach(0..<photoModel.indexC, id:\.self) { index in
-                                Image(uiImage: photoModel.images[index])
-                                        .resizable()
-                                        .scaledToFit()
-                                        .onTapGesture {
-                                            photoModel.image = photoModel.images[index]
-                                        }
-                                }
- 
-                            } else {
-                                Image(systemName: "photo.fill")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .onTapGesture {
-                                        photoModel.image = UIImage(systemName: "photo.fill")!
-                                    }
-                            }
-                        
-                    }
+                if !photoModel.isEditing {
+                    imageScroll
                 }
-                .frame(height: 140)
-
-                Spacer()
                 
-                Image(uiImage: photoModel.image)
-                    .resizable()
-                    .scaledToFit()
-                    .zoomable(scale: $photoModel.scale)
-//                    .onTapGesture {
-//                        isShovingPhotoPicker = true
-//                        images.append(image)
-//                        indexC += 1
-//                    }
-                
-                Spacer()
+                selectedImage
                 
                 VStack {
-                    TextField("Image name", text: $photoModel.imageName) { isEditing in
-                        photoModel.isEditing = isEditing
+                    if photoModel.image != nil {
+                        editGroup
                     }
-                        .textFieldStyle(.roundedBorder)
-                    
-                    HStack {
-                        Spacer()
-                        
-                        Button {
-                            if photoModel.selectedImage == nil {
-                                photoModel.addMyImage(photoModel.imageName, image: photoModel.image)
-                            }
-                        } label: {
-                            ButtonLabel(symbolLabel: photoModel.selectedImage == nil ? "square.and.arrow.down.fill" : "square.and.arrow.up.fill", label: photoModel.selectedImage == nil ? "Save" : "Update")
-                        }
-                        .disabled(photoModel.buttonDisabled)
-                        .opacity(photoModel.buttonDisabled ? 0.6 : 1)
-                        
-                        Spacer()
-                        
-                        if !photoModel.deleteButtonIsHidden {
-                            Button {
-                                
-                            } label: {
-                                ButtonLabel(symbolLabel: "trash", label: "Delete")
-                            }
-                        }
-                        Spacer()
-                    }
-                    
-                    HStack {
-                        Spacer()
-                        
-                        Button {
-                            photoModel.addPhoto(status: .camera)
-                        } label: {
-                            ButtonLabel(symbolLabel: "camera", label: "Camera")
-                        }
-                        
-                        Spacer()
-                        
-                        Button {
-                            photoModel.addPhoto(status: .photo)
-                        } label: {
-                            ButtonLabel(symbolLabel: "photo", label: "Photo")
-                        }
-                        
-                        Spacer()
+                    if !photoModel.isEditing {
+                        pickerButton
                     }
                 }
                 
@@ -121,18 +44,34 @@ struct PhotoView: View {
                 .padding()
             }
             .navigationBarHidden(true)
+            .task {
+                if FileManager().docExist(named: fileNane) {
+                    photoModel.loadMyImageJSONFile()
+                }
+            }
             .sheet(isPresented: $photoModel.isShovingPhotoPicker) {
+                
                     PhotoPicker(image: $photoModel.image, sourceType: photoModel.status == .photo ? .photoLibrary : .camera)
                     .ignoresSafeArea()
             }
-            .alert("Error", isPresented: $photoModel.showCameraAlert, presenting: photoModel.cameraError) { cameraError in
+            .alert("Error", isPresented: $photoModel.showFileAlert, presenting: photoModel.appError) { cameraError in
                 cameraError.button
             } message: { cameraError in
                 Text(cameraError.message)
             }
-
-        }
-        
+            .toolbar {
+                ToolbarItemGroup(placement: .keyboard) {
+                    HStack {
+                        Spacer()
+                        Button {
+                            nameField = false
+                        } label: {
+                            Image(systemName: "keyboard.chevron.compact.down")
+                        }
+                    }
+                }
+            }
+        }  
     }
 }
 

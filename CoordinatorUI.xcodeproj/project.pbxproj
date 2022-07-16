@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C617CEC2286A066A001147C9 /* EditModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C617CEC1286A066A001147C9 /* EditModel.swift */; };
+		C61CEEFC28825C2400289184 /* PhotoView-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61CEEFB28825C2400289184 /* PhotoView-Extension.swift */; };
 		C65962192868B7480095CD58 /* ContentView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65962182868B7480095CD58 /* ContentView-ViewModel.swift */; };
 		C659621B2868C0FA0095CD58 /* FileManagerDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = C659621A2868C0FA0095CD58 /* FileManagerDocument.swift */; };
 		C65B39902867C52B00D8C968 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65B398F2867C52B00D8C968 /* EditView.swift */; };
@@ -52,6 +53,7 @@
 
 /* Begin PBXFileReference section */
 		C617CEC1286A066A001147C9 /* EditModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditModel.swift; sourceTree = "<group>"; };
+		C61CEEFB28825C2400289184 /* PhotoView-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoView-Extension.swift"; sourceTree = "<group>"; };
 		C65962182868B7480095CD58 /* ContentView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView-ViewModel.swift"; sourceTree = "<group>"; };
 		C659621A2868C0FA0095CD58 /* FileManagerDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerDocument.swift; sourceTree = "<group>"; };
 		C65B398F2867C52B00D8C968 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				C6D5D73E2865247D00C66EF0 /* ContentView.swift */,
 				C68338AC286BD0F700A54072 /* PhotoView.swift */,
 				C695EA9E287E54CF002E5C92 /* ButtonLabel.swift */,
+				C61CEEFB28825C2400289184 /* PhotoView-Extension.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				C659621B2868C0FA0095CD58 /* FileManagerDocument.swift in Sources */,
 				C68338B0286BF07200A54072 /* ZoomableView.swift in Sources */,
 				C6AD479828716323008D3CCB /* PhotoModel.swift in Sources */,
+				C61CEEFC28825C2400289184 /* PhotoView-Extension.swift in Sources */,
 				C65B39902867C52B00D8C968 /* EditView.swift in Sources */,
 				C67DDE0F287BAFEB00334A41 /* MyImageError.swift in Sources */,
 				C6D5D76828652B3700C66EF0 /* Chat.swift in Sources */,
