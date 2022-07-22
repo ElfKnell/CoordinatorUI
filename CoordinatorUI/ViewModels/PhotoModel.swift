@@ -70,9 +70,9 @@ extension PhotoView {
         @Published var showFileAlert = false
         @Published var appError: MyImageError.ErrorType?
         
-        init() {
-            print(FileManager.documentsDirectory.path)
-        }
+//        init() {
+//            print(FileManager.documentsDirectory.path)
+//        }
         
         var buttonDisabled: Bool {
             imageName.isEmpty || image == nil

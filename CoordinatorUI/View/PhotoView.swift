@@ -11,6 +11,7 @@ struct PhotoView: View {
     
     @StateObject var photoModel = PhotoModel()
     @FocusState var nameField: Bool
+    var newNameFile: String
     
     var body: some View {
         NavigationView {
@@ -52,6 +53,7 @@ struct PhotoView: View {
                 }
                 .navigationBarHidden(true)
                 .task {
+                    FileManager().setFileName(newNameFile)
                     if FileManager().docExist(named: fileNane) {
                         photoModel.loadMyImageJSONFile()
                     }
@@ -85,6 +87,6 @@ struct PhotoView: View {
 
 struct PhotoView_Previews: PreviewProvider {
     static var previews: some View {
-        PhotoView()
+        PhotoView(newNameFile: "")
     }
 }

@@ -31,12 +31,18 @@ struct EditView: View {
                     TextField("Description", text: $description)
                 }
                 
+                NavigationLink(destination: PhotoView(newNameFile: "\(location.id).json")) {
+                    Text("Choose Photo")
+                }
+                .navigationBarTitleDisplayMode(.inline)
+                .padding()
+                
                 Section("Nearby...") {
                     switch editModel.loadingState {
                     case .loading:
                         Text("Loading...")
                     case .loaded:
-                        ForEach(editModel.pages, id: \.pageid) { page in
+                        List(editModel.pages, id: \.pageid) { page in
                             Text(page.title)
                                 .font(.headline)
                             + Text(": ")
@@ -52,7 +58,6 @@ struct EditView: View {
             .toolbar {
                 Button("Save") {
                     var newLocation = location
-                    //newLocation.id = UUID()
                     newLocation.name = name
                     newLocation.description = description
                     onSave(newLocation)

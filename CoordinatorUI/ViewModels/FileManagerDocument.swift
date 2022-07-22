@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-let fileNane = "MyImages.json"
+var fileNane = "MyImages.json"
 
 extension FileManager {
     static var documentsDirectory: URL {
@@ -18,6 +18,10 @@ extension FileManager {
     
     func docExist(named docName: String) -> Bool {
         fileExists(atPath: Self.documentsDirectory.appendingPathComponent(docName).path)
+    }
+    
+    func setFileName(_ nameFile: String) {
+        fileNane = nameFile
     }
     
     func saveDocument(contents: String) throws {
