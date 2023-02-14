@@ -58,9 +58,8 @@ extension PhotoView {
     @MainActor class PhotoModel: ObservableObject {
         
         @Published var status = PhotoOrCamera.photo
-        @Published var scale: CGFloat = 1
         @Published var isShovingPhotoPicker = false
-        @Published var image: UIImage?     //UIImage(systemName: "photo.fill")!
+        @Published var image: UIImage?
         @Published var showCameraAlert = false
         @Published var cameraError: PhotoOrCamera.CameraErroreType?
         @Published var imageName: String = ""
@@ -69,10 +68,6 @@ extension PhotoView {
         @Published var myImages = [MyImage]()
         @Published var showFileAlert = false
         @Published var appError: MyImageError.ErrorType?
-        
-//        init() {
-//            print(FileManager.documentsDirectory.path)
-//        }
         
         var buttonDisabled: Bool {
             imageName.isEmpty || image == nil

@@ -11,11 +11,13 @@ struct PhotoView: View {
     
     @StateObject var photoModel = PhotoModel()
     @FocusState var nameField: Bool
+    
     var newNameFile: String
     
+    let locationFetcher = LocationFetcher()
+    
     var body: some View {
-        NavigationView {
-            ZStack {
+        ZStack(alignment: .top) {
                 
                 RadialGradient(stops: [
                     .init(color: Color(red: 0.1, green: 0.2, blue: 0.45), location: 0.3),
@@ -37,21 +39,8 @@ struct PhotoView: View {
                             pickerButton
                         }
                     }
-                    
-                    Spacer()
-                    
-                    HStack {
-                        Button {
-                            photoModel.scale = 1
-                        } label: {
-                            ButtonLabel(symbolLabel: "gobackward", label: "Reset")
-                        }
-                        Spacer()
-                        Text("Zoom: \(String(format: "%.02f", photoModel.scale * 100) )%")
-                    }
-                    .padding()
                 }
-                .navigationBarHidden(true)
+                .navigationTitle("Add photo")
                 .task {
                     FileManager().setFileName(newNameFile)
                     if FileManager().docExist(named: fileNane) {
@@ -81,12 +70,13 @@ struct PhotoView: View {
                     }
                 }
             }
-        }  
-    }
+        }
 }
 
 struct PhotoView_Previews: PreviewProvider {
     static var previews: some View {
-        PhotoView(newNameFile: "")
+        NavigationView {
+            PhotoView(newNameFile: "")
+        }
     }
 }

@@ -16,6 +16,8 @@ extension FileManager {
         return paths[0]
     }
     
+    static let savePath = FileManager.documentsDirectory.appendingPathComponent("SavedPlaces")
+    
     func docExist(named docName: String) -> Bool {
         fileExists(atPath: Self.documentsDirectory.appendingPathComponent(docName).path)
     }

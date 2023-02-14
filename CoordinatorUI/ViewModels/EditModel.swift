@@ -19,6 +19,7 @@ extension EditView {
                 print("Bad URL")
                 return
             }
+            
             do {
                 let (data, _) = try await URLSession.shared.data(from: url)
                 let items = try JSONDecoder().decode(Result.self, from: data)

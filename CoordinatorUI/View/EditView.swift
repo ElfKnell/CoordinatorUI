@@ -16,15 +16,16 @@ struct EditView: View {
     @Environment(\.dismiss) var dismiss
     
     var location: Location
-    var onSave: (Location) -> Void
     
     @StateObject private var editModel = EditModel()
+    
+    @EnvironmentObject var locationEdit: LocationEdit
     
     @State private var name: String
     @State private var description: String
     
     var body: some View {
-        NavigationView {
+
             Form {
                 Section {
                     TextField("Place name", text: $name)
@@ -56,25 +57,28 @@ struct EditView: View {
             }
             .navigationTitle("Place details")
             .toolbar {
-                Button("Save") {
-                    var newLocation = location
-                    newLocation.name = name
-                    newLocation.description = description
-                    onSave(newLocation)
-                    
-                    dismiss()
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Save") {
+                        var newLocation = location
+                        newLocation.name = name
+                        newLocation.description = description
+                        
+                        locationEdit.updateLocation(location, location: newLocation)
+                        
+                        dismiss()
+                    }
                 }
+                
             }
             .task {
                 await editModel.fetchNearbyPlaces(location: location)
             }
         }
-    }
     
-    init(location: Location, onSave: @escaping (Location) -> Void) {
+    init(location: Location) {
         self.location = location
-        self.onSave = onSave
-        
+
         _name = State(initialValue: location.name)
         _description = State(initialValue: location.description)
     }
@@ -83,6 +87,9 @@ struct EditView: View {
 
 struct EditView_Previews: PreviewProvider {
     static var previews: some View {
-        EditView(location: Location.example) { _ in }
+        NavigationView {
+            EditView(location: Location.example)
+                .environmentObject(LocationEdit())
+        }
     }
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension PhotoView {
-    
+
     var imageScroll: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 10) {
@@ -30,24 +30,21 @@ extension PhotoView {
             }
         }
         .frame(height: 140)
-        .padding(.bottom)
+        .padding(.vertical)
     }
     
     var selectedImage: some View {
         Group {
             if let image = photoModel.image {
-                Image(uiImage: image)
-                    .resizable()
-                    .scaledToFit()
-                    .zoomable(scale: $photoModel.scale)
-                    .onTapGesture {
-                        photoModel.isShovingPhotoPicker = true
-                    }
+                NavigationLink(destination: BigPhotoView(img: image)) {
+                    Image(uiImage: image)
+                        .resizable()
+                        .scaledToFit()
+                }
             } else {
                 Image(systemName: "photo.fill")
                     .resizable()
                     .scaledToFit()
-                    .zoomable(scale: $photoModel.scale)
                     .onTapGesture {
                         photoModel.isShovingPhotoPicker = true
                     }
@@ -102,6 +99,8 @@ extension PhotoView {
             Spacer()
             
             Button {
+                
+                print(locationFetcher.lon)
                 photoModel.addPhoto(status: .camera)
             } label: {
                 ButtonLabel(symbolLabel: "camera", label: "Camera")
@@ -115,6 +114,7 @@ extension PhotoView {
             Spacer()
             
             Button {
+                locationFetcher.start()
                 photoModel.addPhoto(status: .photo)
             } label: {
                 ButtonLabel(symbolLabel: "photo", label: "Photo")

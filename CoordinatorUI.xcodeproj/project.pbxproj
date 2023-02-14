@@ -8,8 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		C617CEC2286A066A001147C9 /* EditModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C617CEC1286A066A001147C9 /* EditModel.swift */; };
+		C61CDE6A28F2D1A00015C8CD /* BigPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61CDE6928F2D1A00015C8CD /* BigPhotoView.swift */; };
 		C61CEEFC28825C2400289184 /* PhotoView-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61CEEFB28825C2400289184 /* PhotoView-Extension.swift */; };
-		C65962192868B7480095CD58 /* ContentView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65962182868B7480095CD58 /* ContentView-ViewModel.swift */; };
+		C621DD4028FDCF5900E2B2CB /* LocationFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C621DD3F28FDCF5900E2B2CB /* LocationFetcher.swift */; };
+		C639E6012990295600814041 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C639E6002990295600814041 /* TestView.swift */; };
+		C65962192868B7480095CD58 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65962182868B7480095CD58 /* ViewModel.swift */; };
 		C659621B2868C0FA0095CD58 /* FileManagerDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = C659621A2868C0FA0095CD58 /* FileManagerDocument.swift */; };
 		C65B39902867C52B00D8C968 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65B398F2867C52B00D8C968 /* EditView.swift */; };
 		C65B39922867D99A00D8C968 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65B39912867D99A00D8C968 /* Result.swift */; };
@@ -17,6 +20,7 @@
 		C67DDE0F287BAFEB00334A41 /* MyImageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67DDE0E287BAFEB00334A41 /* MyImageError.swift */; };
 		C68338AD286BD0F700A54072 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68338AC286BD0F700A54072 /* PhotoView.swift */; };
 		C68338B0286BF07200A54072 /* ZoomableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68338AF286BF07200A54072 /* ZoomableView.swift */; };
+		C68BE9612997E87A0000C20A /* LocationEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68BE9602997E87A0000C20A /* LocationEdit.swift */; };
 		C695EA9F287E54CF002E5C92 /* ButtonLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C695EA9E287E54CF002E5C92 /* ButtonLabel.swift */; };
 		C6AD479828716323008D3CCB /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AD479728716323008D3CCB /* PhotoModel.swift */; };
 		C6CF7D4E28666FB4000C4B1E /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CF7D4D28666FB4000C4B1E /* Location.swift */; };
@@ -53,8 +57,11 @@
 
 /* Begin PBXFileReference section */
 		C617CEC1286A066A001147C9 /* EditModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditModel.swift; sourceTree = "<group>"; };
+		C61CDE6928F2D1A00015C8CD /* BigPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigPhotoView.swift; sourceTree = "<group>"; };
 		C61CEEFB28825C2400289184 /* PhotoView-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoView-Extension.swift"; sourceTree = "<group>"; };
-		C65962182868B7480095CD58 /* ContentView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView-ViewModel.swift"; sourceTree = "<group>"; };
+		C621DD3F28FDCF5900E2B2CB /* LocationFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFetcher.swift; sourceTree = "<group>"; };
+		C639E6002990295600814041 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		C65962182868B7480095CD58 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		C659621A2868C0FA0095CD58 /* FileManagerDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerDocument.swift; sourceTree = "<group>"; };
 		C65B398F2867C52B00D8C968 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 		C65B39912867D99A00D8C968 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
@@ -62,6 +69,7 @@
 		C67DDE0E287BAFEB00334A41 /* MyImageError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyImageError.swift; sourceTree = "<group>"; };
 		C68338AC286BD0F700A54072 /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 		C68338AF286BF07200A54072 /* ZoomableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomableView.swift; sourceTree = "<group>"; };
+		C68BE9602997E87A0000C20A /* LocationEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationEdit.swift; sourceTree = "<group>"; };
 		C695EA9E287E54CF002E5C92 /* ButtonLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonLabel.swift; sourceTree = "<group>"; };
 		C6AD479728716323008D3CCB /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
 		C6CF7D4D28666FB4000C4B1E /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -115,6 +123,8 @@
 				C68338AC286BD0F700A54072 /* PhotoView.swift */,
 				C695EA9E287E54CF002E5C92 /* ButtonLabel.swift */,
 				C61CEEFB28825C2400289184 /* PhotoView-Extension.swift */,
+				C61CDE6928F2D1A00015C8CD /* BigPhotoView.swift */,
+				C639E6002990295600814041 /* TestView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -124,6 +134,7 @@
 			children = (
 				C68338AF286BF07200A54072 /* ZoomableView.swift */,
 				C6E95EC7286D500A0089701C /* PhotoPicker.swift */,
+				C621DD3F28FDCF5900E2B2CB /* LocationFetcher.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -205,10 +216,11 @@
 			isa = PBXGroup;
 			children = (
 				C6D5D76C28652CD600C66EF0 /* ChatService.swift */,
-				C65962182868B7480095CD58 /* ContentView-ViewModel.swift */,
+				C65962182868B7480095CD58 /* ViewModel.swift */,
 				C659621A2868C0FA0095CD58 /* FileManagerDocument.swift */,
 				C617CEC1286A066A001147C9 /* EditModel.swift */,
 				C6AD479728716323008D3CCB /* PhotoModel.swift */,
+				C68BE9602997E87A0000C20A /* LocationEdit.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -346,6 +358,7 @@
 				C65B39922867D99A00D8C968 /* Result.swift in Sources */,
 				C68338AD286BD0F700A54072 /* PhotoView.swift in Sources */,
 				C6D5D73F2865247D00C66EF0 /* ContentView.swift in Sources */,
+				C621DD4028FDCF5900E2B2CB /* LocationFetcher.swift in Sources */,
 				C6D5D76A28652BAA00C66EF0 /* Message.swift in Sources */,
 				C659621B2868C0FA0095CD58 /* FileManagerDocument.swift in Sources */,
 				C68338B0286BF07200A54072 /* ZoomableView.swift in Sources */,
@@ -358,11 +371,14 @@
 				C67DDE0D287BA72400334A41 /* MyImage.swift in Sources */,
 				C6D5D76D28652CD600C66EF0 /* ChatService.swift in Sources */,
 				C6D5D775286543B900C66EF0 /* User.swift in Sources */,
+				C61CDE6A28F2D1A00015C8CD /* BigPhotoView.swift in Sources */,
 				C6D5D73D2865247D00C66EF0 /* CoordinatorUIApp.swift in Sources */,
 				C617CEC2286A066A001147C9 /* EditModel.swift in Sources */,
+				C639E6012990295600814041 /* TestView.swift in Sources */,
+				C68BE9612997E87A0000C20A /* LocationEdit.swift in Sources */,
 				C695EA9F287E54CF002E5C92 /* ButtonLabel.swift in Sources */,
 				C6CF7D4E28666FB4000C4B1E /* Location.swift in Sources */,
-				C65962192868B7480095CD58 /* ContentView-ViewModel.swift in Sources */,
+				C65962192868B7480095CD58 /* ViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -526,6 +542,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Please Allow CoordinatorUI App ability to access camera";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Please authenticate yourself to unlock your places.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "It is necessary for the possibility of adding a location to a photo.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -557,6 +574,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Please Allow CoordinatorUI App ability to access camera";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Please authenticate yourself to unlock your places.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "It is necessary for the possibility of adding a location to a photo.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
