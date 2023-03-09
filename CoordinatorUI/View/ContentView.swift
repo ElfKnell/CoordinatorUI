@@ -11,18 +11,33 @@ import MapKit
 
 struct ContentView: View {
     @StateObject private var viewModel = ViewModel()
-    @EnvironmentObject var locationEdit: LocationEdit
+    private var locationEdit = LocationEdit()
+    
+    private var region = RegionEdit()
+    
+    @Environment(\.scenePhase) private var scenePhase
+    
+    @EnvironmentObject var locationFetcher: LocationFetcher
+    
+    @State private var mapRegion = RegionEdit.mapRegion
+    
+    @State private var latitude: String = ""
+    @State private var longitude: String = ""
+    
+    @State private var locations: [Location] = []
     
     var body: some View {
         NavigationView {
             VStack {
                 if viewModel.isUnlocked {
                     ZStack {
-                        Map(coordinateRegion: $locationEdit.mapRegion, annotationItems: locationEdit.locations) { location in
+                        Map(coordinateRegion: $mapRegion, annotationItems: locations) { location in
                             MapAnnotation(coordinate: location.coordinate) {
                                     
                                 NavigationLink {
+                                    
                                     EditView(location: location)
+                                    
                                 } label: {
                                     
                                     VStack(spacing: 0) {
@@ -43,6 +58,7 @@ struct ContentView: View {
                             }
                         }
                             .ignoresSafeArea()
+                        
                         Circle()
                             .fill(.blue)
                             .opacity(0.3)
@@ -53,22 +69,27 @@ struct ContentView: View {
                                 
                                 Spacer()
                                 
-                                TextField("Latitude", text: $locationEdit.latitude)
+                                TextField("Latitude", text: $latitude)
                                     .font(.title)
                                     .textFieldStyle(.roundedBorder)
                                 
                                 Spacer()
                                 
-                                TextField("Longitude", text: $locationEdit.longitude)
+                                TextField("Longitude", text: $longitude)
                                     .font(.title)
                                     .textFieldStyle(.roundedBorder)
                                 
                                 Spacer()
                                 
                                 Button {
-                                    locationEdit.changeLocation()
+                                    guard let t = region.changeRegion(latitude: latitude, longitude: longitude) else { return }
+                                    
+                                    mapRegion = t
+                                    
                                 } label: {
+                                    
                                     Image(systemName: "paperplane.fill")
+                                    
                                 }
                                 .padding()
                                 .background(.black.opacity(0.75))
@@ -86,9 +107,15 @@ struct ContentView: View {
                                 Spacer()
                                 
                                 Button {
-                                    locationEdit.addLocation()
+                                    
+                                    locationEdit.addLocation(mapRegion: mapRegion)
+                                    
+                                    locations = locationEdit.loc()
+                                    
                                 } label: {
+                                    
                                     Image(systemName: "plus")
+                                    
                                 }
                                 .padding()
                                 .background(.black.opacity(0.75))
@@ -97,6 +124,18 @@ struct ContentView: View {
                                 .clipShape(Circle())
                                 .padding(.trailing)
                             }
+                        }
+                    }
+                    .task {
+                        locations = locationEdit.loc()
+                        
+                        let sRegin = StartRegion(locationFetcher.coordinateRegion)
+                        
+                        mapRegion = sRegin.startRegion
+                    }
+                    .onChange(of: scenePhase) { phase in
+                        if phase == .inactive {
+                            region.saveRegion(Region.decoder(mapRegion))
                         }
                     }
                 } else {
@@ -124,10 +163,10 @@ struct ContentView: View {
 }
     
 struct ContentView_Previews: PreviewProvider {
-    static let locationEdit = LocationEdit()
+    static let locationFetcher = LocationFetcher()
     
     static var previews: some View {
         ContentView()
-            .environmentObject(locationEdit)
+            .environmentObject(locationFetcher)
     }
 }

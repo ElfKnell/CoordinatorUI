@@ -11,7 +11,6 @@
 		C61CDE6A28F2D1A00015C8CD /* BigPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61CDE6928F2D1A00015C8CD /* BigPhotoView.swift */; };
 		C61CEEFC28825C2400289184 /* PhotoView-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61CEEFB28825C2400289184 /* PhotoView-Extension.swift */; };
 		C621DD4028FDCF5900E2B2CB /* LocationFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C621DD3F28FDCF5900E2B2CB /* LocationFetcher.swift */; };
-		C639E6012990295600814041 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C639E6002990295600814041 /* TestView.swift */; };
 		C65962192868B7480095CD58 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65962182868B7480095CD58 /* ViewModel.swift */; };
 		C659621B2868C0FA0095CD58 /* FileManagerDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = C659621A2868C0FA0095CD58 /* FileManagerDocument.swift */; };
 		C65B39902867C52B00D8C968 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65B398F2867C52B00D8C968 /* EditView.swift */; };
@@ -23,6 +22,8 @@
 		C68BE9612997E87A0000C20A /* LocationEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68BE9602997E87A0000C20A /* LocationEdit.swift */; };
 		C695EA9F287E54CF002E5C92 /* ButtonLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C695EA9E287E54CF002E5C92 /* ButtonLabel.swift */; };
 		C6AD479828716323008D3CCB /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AD479728716323008D3CCB /* PhotoModel.swift */; };
+		C6B721A329B38F170080419A /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B721A229B38F170080419A /* Region.swift */; };
+		C6B721A529B5120C0080419A /* StartRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B721A429B5120C0080419A /* StartRegion.swift */; };
 		C6CF7D4E28666FB4000C4B1E /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CF7D4D28666FB4000C4B1E /* Location.swift */; };
 		C6D5D73D2865247D00C66EF0 /* CoordinatorUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D5D73C2865247D00C66EF0 /* CoordinatorUIApp.swift */; };
 		C6D5D73F2865247D00C66EF0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D5D73E2865247D00C66EF0 /* ContentView.swift */; };
@@ -36,6 +37,7 @@
 		C6D5D76D28652CD600C66EF0 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D5D76C28652CD600C66EF0 /* ChatService.swift */; };
 		C6D5D775286543B900C66EF0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D5D774286543B900C66EF0 /* User.swift */; };
 		C6E95EC8286D500A0089701C /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E95EC7286D500A0089701C /* PhotoPicker.swift */; };
+		C6F871CD29A6F8F20052A1B1 /* RegionEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F871CC29A6F8F20052A1B1 /* RegionEdit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,7 +62,7 @@
 		C61CDE6928F2D1A00015C8CD /* BigPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigPhotoView.swift; sourceTree = "<group>"; };
 		C61CEEFB28825C2400289184 /* PhotoView-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoView-Extension.swift"; sourceTree = "<group>"; };
 		C621DD3F28FDCF5900E2B2CB /* LocationFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFetcher.swift; sourceTree = "<group>"; };
-		C639E6002990295600814041 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		C63802E929AAA4AA0028269D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C65962182868B7480095CD58 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		C659621A2868C0FA0095CD58 /* FileManagerDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerDocument.swift; sourceTree = "<group>"; };
 		C65B398F2867C52B00D8C968 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
@@ -72,6 +74,8 @@
 		C68BE9602997E87A0000C20A /* LocationEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationEdit.swift; sourceTree = "<group>"; };
 		C695EA9E287E54CF002E5C92 /* ButtonLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonLabel.swift; sourceTree = "<group>"; };
 		C6AD479728716323008D3CCB /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
+		C6B721A229B38F170080419A /* Region.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
+		C6B721A429B5120C0080419A /* StartRegion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRegion.swift; sourceTree = "<group>"; };
 		C6CF7D4D28666FB4000C4B1E /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		C6D5D7392865247D00C66EF0 /* CoordinatorUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoordinatorUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6D5D73C2865247D00C66EF0 /* CoordinatorUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorUIApp.swift; sourceTree = "<group>"; };
@@ -88,6 +92,7 @@
 		C6D5D76C28652CD600C66EF0 /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
 		C6D5D774286543B900C66EF0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C6E95EC7286D500A0089701C /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
+		C6F871CC29A6F8F20052A1B1 /* RegionEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionEdit.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,7 +129,6 @@
 				C695EA9E287E54CF002E5C92 /* ButtonLabel.swift */,
 				C61CEEFB28825C2400289184 /* PhotoView-Extension.swift */,
 				C61CDE6928F2D1A00015C8CD /* BigPhotoView.swift */,
-				C639E6002990295600814041 /* TestView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -162,6 +166,7 @@
 		C6D5D73B2865247D00C66EF0 /* CoordinatorUI */ = {
 			isa = PBXGroup;
 			children = (
+				C63802E929AAA4AA0028269D /* Info.plist */,
 				C68338AE286BF05800A54072 /* Services */,
 				C65B398E2867C4F900D8C968 /* View */,
 				C6D5D76B28652C7700C66EF0 /* ViewModels */,
@@ -208,6 +213,7 @@
 				C65B39912867D99A00D8C968 /* Result.swift */,
 				C67DDE0C287BA72400334A41 /* MyImage.swift */,
 				C67DDE0E287BAFEB00334A41 /* MyImageError.swift */,
+				C6B721A229B38F170080419A /* Region.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -221,6 +227,8 @@
 				C617CEC1286A066A001147C9 /* EditModel.swift */,
 				C6AD479728716323008D3CCB /* PhotoModel.swift */,
 				C68BE9602997E87A0000C20A /* LocationEdit.swift */,
+				C6F871CC29A6F8F20052A1B1 /* RegionEdit.swift */,
+				C6B721A429B5120C0080419A /* StartRegion.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -355,9 +363,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6B721A529B5120C0080419A /* StartRegion.swift in Sources */,
 				C65B39922867D99A00D8C968 /* Result.swift in Sources */,
 				C68338AD286BD0F700A54072 /* PhotoView.swift in Sources */,
 				C6D5D73F2865247D00C66EF0 /* ContentView.swift in Sources */,
+				C6F871CD29A6F8F20052A1B1 /* RegionEdit.swift in Sources */,
 				C621DD4028FDCF5900E2B2CB /* LocationFetcher.swift in Sources */,
 				C6D5D76A28652BAA00C66EF0 /* Message.swift in Sources */,
 				C659621B2868C0FA0095CD58 /* FileManagerDocument.swift in Sources */,
@@ -372,9 +382,9 @@
 				C6D5D76D28652CD600C66EF0 /* ChatService.swift in Sources */,
 				C6D5D775286543B900C66EF0 /* User.swift in Sources */,
 				C61CDE6A28F2D1A00015C8CD /* BigPhotoView.swift in Sources */,
+				C6B721A329B38F170080419A /* Region.swift in Sources */,
 				C6D5D73D2865247D00C66EF0 /* CoordinatorUIApp.swift in Sources */,
 				C617CEC2286A066A001147C9 /* EditModel.swift in Sources */,
-				C639E6012990295600814041 /* TestView.swift in Sources */,
 				C68BE9612997E87A0000C20A /* LocationEdit.swift in Sources */,
 				C695EA9F287E54CF002E5C92 /* ButtonLabel.swift in Sources */,
 				C6CF7D4E28666FB4000C4B1E /* Location.swift in Sources */,
@@ -465,6 +475,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -519,6 +530,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -540,10 +552,10 @@
 				DEVELOPMENT_TEAM = DBL7348NTB;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CoordinatorUI/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Please Allow CoordinatorUI App ability to access camera";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Please authenticate yourself to unlock your places.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "It is necessary for the possibility of adding a location to a photo.";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -572,10 +584,10 @@
 				DEVELOPMENT_TEAM = DBL7348NTB;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CoordinatorUI/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Please Allow CoordinatorUI App ability to access camera";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Please authenticate yourself to unlock your places.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "It is necessary for the possibility of adding a location to a photo.";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

@@ -19,7 +19,7 @@ struct EditView: View {
     
     @StateObject private var editModel = EditModel()
     
-    @EnvironmentObject var locationEdit: LocationEdit
+    @StateObject var locationEdit = LocationEdit()
     
     @State private var name: String
     @State private var description: String
@@ -89,7 +89,6 @@ struct EditView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             EditView(location: Location.example)
-                .environmentObject(LocationEdit())
         }
     }
 }

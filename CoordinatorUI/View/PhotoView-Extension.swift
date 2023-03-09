@@ -99,8 +99,7 @@ extension PhotoView {
             Spacer()
             
             Button {
-                
-                print(locationFetcher.lon)
+
                 photoModel.addPhoto(status: .camera)
             } label: {
                 ButtonLabel(symbolLabel: "camera", label: "Camera")

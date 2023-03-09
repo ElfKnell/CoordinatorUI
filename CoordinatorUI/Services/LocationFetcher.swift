@@ -6,11 +6,12 @@
 //
 
 import CoreLocation
+import MapKit
 
-class LocationFetcher: NSObject, CLLocationManagerDelegate {
+class LocationFetcher: NSObject, CLLocationManagerDelegate, ObservableObject {
     let manager = CLLocationManager()
     var lastKnownLocation: CLLocationCoordinate2D?
-    var lon = 0.0
+    var coordinateRegion: MKCoordinateRegion?
 
     override init() {
         super.init()
@@ -20,18 +21,18 @@ class LocationFetcher: NSObject, CLLocationManagerDelegate {
     func start() {
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
-        print("..............")
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         lastKnownLocation = locations.first?.coordinate
         
-        guard let lkl = lastKnownLocation?.longitude else { return }
-        lon = lkl
-        print(lon)
+        guard let latitude = lastKnownLocation?.latitude else { return }
+        
+        
+        guard let longitude = lastKnownLocation?.longitude else { return }
+        
+        coordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), span: MKCoordinateSpan(latitudeDelta: 20, longitudeDelta: 20))
+
     }
-    
-    func loc() {
-        print(lon)
-    }
+
 }
