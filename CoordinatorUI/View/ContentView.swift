@@ -82,9 +82,12 @@ struct ContentView: View {
                                 Spacer()
                                 
                                 Button {
-                                    guard let t = region.changeRegion(latitude: latitude, longitude: longitude) else { return }
                                     
-                                    mapRegion = t
+                                    do {
+                                        mapRegion = try region.changeRegion(latitude: latitude, longitude: longitude)
+                                    } catch {
+                                        print(error.localizedDescription)
+                                    }
                                     
                                 } label: {
                                     
