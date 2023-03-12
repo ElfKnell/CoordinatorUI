@@ -15,6 +15,8 @@ struct ContentView: View {
     
     private var region = RegionEdit()
     
+    @State private var textErrorRegion = ""
+    
     @Environment(\.scenePhase) private var scenePhase
     
     @EnvironmentObject var locationFetcher: LocationFetcher
@@ -23,6 +25,8 @@ struct ContentView: View {
     
     @State private var latitude: String = ""
     @State private var longitude: String = ""
+    
+    @State private var isErrorRegion = false
     
     @State private var locations: [Location] = []
     
@@ -86,7 +90,9 @@ struct ContentView: View {
                                     do {
                                         mapRegion = try region.changeRegion(latitude: latitude, longitude: longitude)
                                     } catch {
-                                        print(error.localizedDescription)
+                                        isErrorRegion = true
+                                        
+                                        textErrorRegion = error.localizedDescription
                                     }
                                     
                                 } label: {
@@ -140,6 +146,11 @@ struct ContentView: View {
                         if phase == .inactive {
                             region.saveRegion(Region.decoder(mapRegion))
                         }
+                    }
+                    .alert("Error Region", isPresented: $isErrorRegion) {
+                        
+                    } message: {
+                        Text(textErrorRegion)
                     }
                 } else {
                     VStack {
