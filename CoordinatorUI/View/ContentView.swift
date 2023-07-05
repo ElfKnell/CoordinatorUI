@@ -13,7 +13,7 @@ struct ContentView: View {
     @StateObject private var viewModel = ViewModel()
     private var locationEdit = LocationEdit()
     
-    private var region = RegionEdit()
+    private var regionEdit = RegionEdit()
     
     @State private var textErrorRegion = ""
     
@@ -88,7 +88,7 @@ struct ContentView: View {
                                 Button {
                                     
                                     do {
-                                        mapRegion = try region.changeRegion(latitude: latitude, longitude: longitude)
+                                        mapRegion = try regionEdit.changeRegion(latitude: latitude, longitude: longitude)
                                     } catch {
                                         isErrorRegion = true
                                         
@@ -137,14 +137,14 @@ struct ContentView: View {
                     }
                     .task {
                         locations = locationEdit.loc()
-                        
+
                         let sRegin = StartRegion(locationFetcher.coordinateRegion)
-                        
+
                         mapRegion = sRegin.startRegion
                     }
                     .onChange(of: scenePhase) { phase in
                         if phase == .inactive {
-                            region.saveRegion(Region.decoder(mapRegion))
+                            regionEdit.saveRegion(Region.decoder(mapRegion))
                         }
                     }
                     .alert("Error Region", isPresented: $isErrorRegion) {

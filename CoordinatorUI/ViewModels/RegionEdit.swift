@@ -15,7 +15,7 @@ class RegionEdit: ObservableObject {
     
     private let fileNameRegion = "region.json"
     
-     private let fileManager = FileManager()
+    private let fileManager = FileManager()
     
     @Published var region: Region
     

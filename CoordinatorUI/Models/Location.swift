@@ -20,4 +20,8 @@ struct Location: Identifiable, Codable, Equatable {
     }
     
     static let example = Location(id: UUID(), name: "Buckingham Palace", description: "Where  Queen Elizabeth lives with her dorgis", latitude: 51.501, longitude: -0.141)
+    
+    static func decodeRegion(_ location: Location) -> Region {
+        Region(id: location.id, longitude: location.longitude, lanitude: location.latitude)
+    }
 }

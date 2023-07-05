@@ -21,6 +21,8 @@ struct EditView: View {
     
     @StateObject var locationEdit = LocationEdit()
     
+    private var regionEdit = RegionEdit()
+    
     @State private var name: String
     @State private var description: String
     
@@ -73,12 +75,13 @@ struct EditView: View {
             }
             .task {
                 await editModel.fetchNearbyPlaces(location: location)
+                regionEdit.saveRegion(Location.decodeRegion(location))
             }
         }
     
     init(location: Location) {
         self.location = location
-
+        
         _name = State(initialValue: location.name)
         _description = State(initialValue: location.description)
     }
