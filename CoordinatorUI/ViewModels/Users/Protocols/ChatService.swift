@@ -9,9 +9,10 @@ import Foundation
 
 protocol ChatService {
     
-    var currentUser: User { get }
+    var adminUser: User { get }
     
     func fetchChats() -> [Chat]
+    func fetchUsers() -> [User]
     func fetchMessages() -> [Message]
     
     @discardableResult

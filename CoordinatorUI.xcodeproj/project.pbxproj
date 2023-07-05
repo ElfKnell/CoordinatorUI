@@ -141,8 +141,69 @@
 				C68338AF286BF07200A54072 /* ZoomableView.swift */,
 				C6E95EC7286D500A0089701C /* PhotoPicker.swift */,
 				C621DD3F28FDCF5900E2B2CB /* LocationFetcher.swift */,
+				C659621A2868C0FA0095CD58 /* FileManagerDocument.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		C6B0619B2A55F16700DE92AB /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				C6D5D774286543B900C66EF0 /* User.swift */,
+				C6D5D76928652BAA00C66EF0 /* Message.swift */,
+				C6D5D76728652B3700C66EF0 /* Chat.swift */,
+			);
+			path = Users;
+			sourceTree = "<group>";
+		};
+		C6B0619C2A55F18A00DE92AB /* Maps */ = {
+			isa = PBXGroup;
+			children = (
+				C6B0619D2A55F1AD00DE92AB /* Errors */,
+				C65B39912867D99A00D8C968 /* Result.swift */,
+				C6CF7D4D28666FB4000C4B1E /* Location.swift */,
+				C67DDE0C287BA72400334A41 /* MyImage.swift */,
+				C6B721A229B38F170080419A /* Region.swift */,
+			);
+			path = Maps;
+			sourceTree = "<group>";
+		};
+		C6B0619D2A55F1AD00DE92AB /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				C67DDE0E287BAFEB00334A41 /* MyImageError.swift */,
+				C665A3CA29BE273F0091C682 /* ErrorRegion.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
+		C6B0619E2A55F1FF00DE92AB /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				C6D5D76C28652CD600C66EF0 /* ChatService.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		C6B0619F2A55F32600DE92AB /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				C6B0619E2A55F1FF00DE92AB /* Protocols */,
+			);
+			path = Users;
+			sourceTree = "<group>";
+		};
+		C6B061A02A55F3B800DE92AB /* Maps */ = {
+			isa = PBXGroup;
+			children = (
+				C65962182868B7480095CD58 /* ViewModel.swift */,
+				C617CEC1286A066A001147C9 /* EditModel.swift */,
+				C6AD479728716323008D3CCB /* PhotoModel.swift */,
+				C68BE9602997E87A0000C20A /* LocationEdit.swift */,
+				C6F871CC29A6F8F20052A1B1 /* RegionEdit.swift */,
+				C6B721A429B5120C0080419A /* StartRegion.swift */,
+			);
+			path = Maps;
 			sourceTree = "<group>";
 		};
 		C6D5D7302865247D00C66EF0 = {
@@ -208,15 +269,8 @@
 		C6D5D76628652B1100C66EF0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C6D5D76728652B3700C66EF0 /* Chat.swift */,
-				C6D5D76928652BAA00C66EF0 /* Message.swift */,
-				C6D5D774286543B900C66EF0 /* User.swift */,
-				C6CF7D4D28666FB4000C4B1E /* Location.swift */,
-				C65B39912867D99A00D8C968 /* Result.swift */,
-				C67DDE0C287BA72400334A41 /* MyImage.swift */,
-				C67DDE0E287BAFEB00334A41 /* MyImageError.swift */,
-				C6B721A229B38F170080419A /* Region.swift */,
-				C665A3CA29BE273F0091C682 /* ErrorRegion.swift */,
+				C6B0619C2A55F18A00DE92AB /* Maps */,
+				C6B0619B2A55F16700DE92AB /* Users */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -224,14 +278,8 @@
 		C6D5D76B28652C7700C66EF0 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				C6D5D76C28652CD600C66EF0 /* ChatService.swift */,
-				C65962182868B7480095CD58 /* ViewModel.swift */,
-				C659621A2868C0FA0095CD58 /* FileManagerDocument.swift */,
-				C617CEC1286A066A001147C9 /* EditModel.swift */,
-				C6AD479728716323008D3CCB /* PhotoModel.swift */,
-				C68BE9602997E87A0000C20A /* LocationEdit.swift */,
-				C6F871CC29A6F8F20052A1B1 /* RegionEdit.swift */,
-				C6B721A429B5120C0080419A /* StartRegion.swift */,
+				C6B061A02A55F3B800DE92AB /* Maps */,
+				C6B0619F2A55F32600DE92AB /* Users */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";

@@ -9,7 +9,8 @@ import Foundation
 
 struct Chat: Identifiable {
     let id = UUID()
-    let userId: UUID
+    let adminId: UUID
+    let usersId: [UUID]
     let title: String
     let subtitle: String
 }
