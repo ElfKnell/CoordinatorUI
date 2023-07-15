@@ -11,7 +11,6 @@ struct Message: Identifiable {
     let id = UUID()
     let chartId: UUID
     let userId: UUID
-    let title: String
     let content: String
     let date: Date
 }
