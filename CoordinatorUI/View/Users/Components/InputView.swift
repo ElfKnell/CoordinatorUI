@@ -32,7 +32,7 @@ struct InputView: View {
             }
             
             Rectangle()
-                .frame(width: 350, height: 1)
+                .frame(width: 335, height: 1)
         }
         
     }

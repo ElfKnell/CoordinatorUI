@@ -6,35 +6,27 @@
 //
 
 import SwiftUI
-import FirebaseFirestore
-import FirebaseCore
-import FirebaseAuth
-
-
-class AppDelegate: NSObject, UIApplicationDelegate {
-  func application(_ application: UIApplication,
-                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-    FirebaseApp.configure()
-
-    return true
-  }
-}
+import Firebase
 
 @main
 struct CoordinatorUIApp: App {
-    
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject var locationFetcher = LocationFetcher()
+    @StateObject var authViewModel = AuthViewModel()
+    
+    init() {
+        FirebaseApp.configure()
+    }
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            StartView()
                 .onAppear {
                     UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutUnsatisfiable")
                     
                     locationFetcher.start()
                 }
                 .environmentObject(locationFetcher)
+                .environmentObject(authViewModel)
         }
     }
 }

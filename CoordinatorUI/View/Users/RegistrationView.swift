@@ -13,6 +13,8 @@ struct RegistrationView: View {
     @State private var password = ""
     @State private var cPassword = ""
     
+    @EnvironmentObject var viewModel: AuthViewModel
+    
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -32,12 +34,12 @@ struct RegistrationView: View {
                     Spacer()
                     
                     Text("Registration")
-                        .font(.system(size: 50,weight: .bold, design: .serif))
-                        .offset(x: -60, y: -110)
+                        .font(.system(size: 45,weight: .bold, design: .serif))
+                        .offset(x: -53, y: -110)
                     
                     InputView(text: $email, title: "Email", placeholder: "name@example.com")
                         .autocapitalization(.none)
-                        .offset(x: -30, y: -45)
+                        .offset(x: -20, y: -45)
                     
                     InputView(text: $name, title: "Full name", placeholder: "Name")
                         .offset(x: -15, y: -30)
@@ -45,11 +47,29 @@ struct RegistrationView: View {
                     InputView(text: $password, title: "Password", placeholder: "password", isSecureField: true)
                         .offset(x: 15, y: -15)
                     
-                    InputView(text: $cPassword, title: "Confirm password", placeholder: "confirm password", isSecureField: true)
-                        .offset(x: 30)
+                    ZStack(alignment: .trailing) {
+                        InputView(text: $cPassword, title: "Confirm password", placeholder: "confirm password", isSecureField: true)
+                            .offset(x: 25)
+                        
+                        if !password.isEmpty && !cPassword.isEmpty {
+                            if password == cPassword {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .imageScale(.large)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(Color(.systemGreen))
+                            } else {
+                                Image(systemName: "xmark.circle.fill")
+                                    .imageScale(.large)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(Color(.systemRed))
+                            }
+                        }
+                    }
                     
                     Button {
-                        
+                        Task {
+                            try await viewModel.createUser(withEmail: email, password: password, fullname: name)
+                        }
                     } label: {
                         Text("Sign up")
                             .bold()
@@ -63,6 +83,8 @@ struct RegistrationView: View {
                             .offset(x: 40, y: 30)
                         
                     }
+                    .disabled(!formIsValid)
+                    .opacity(formIsValid ? 1.0 : 0.5)
                     
                     Spacer()
                     
@@ -82,6 +104,17 @@ struct RegistrationView: View {
                 }
             }
         }
+    }
+}
+
+extension RegistrationView: AuthenticationFormProtocol {
+    var formIsValid: Bool {
+        return !email.isEmpty
+        && email.contains("@")
+        && !password.isEmpty
+        && password.count > 5
+        && cPassword == password
+        && !name.isEmpty
     }
 }
 
