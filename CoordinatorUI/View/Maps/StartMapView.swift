@@ -9,8 +9,8 @@ import SwiftUI
 import MapKit
 
 
-struct ContentView: View {
-    @StateObject private var viewModel = ViewModel()
+struct StartMapView: View {
+    
     private var locationEdit = LocationEdit()
     
     private var regionEdit = RegionEdit()
@@ -33,7 +33,6 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                if viewModel.isUnlocked {
                     ZStack {
                         Map(coordinateRegion: $mapRegion, annotationItems: locations) { location in
                             MapAnnotation(coordinate: location.coordinate) {
@@ -152,25 +151,6 @@ struct ContentView: View {
                     } message: {
                         Text(textErrorRegion)
                     }
-                } else {
-                    VStack {
-                        Spacer()
-                        
-                        Text("Locked")
-                        
-                        Spacer()
-                        
-                        Button("Unlock places") {
-                            viewModel.authenticate()
-                        }
-                        .padding()
-                        .background(.blue)
-                        .foregroundColor(.white)
-                        .clipShape(Capsule())
-                        
-                        Spacer()
-                    }
-                }
             }
         }
     }
@@ -180,7 +160,7 @@ struct ContentView_Previews: PreviewProvider {
     static let locationFetcher = LocationFetcher()
     
     static var previews: some View {
-        ContentView()
+        StartMapView()
             .environmentObject(locationFetcher)
     }
 }
