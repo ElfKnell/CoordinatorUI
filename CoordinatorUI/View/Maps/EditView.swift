@@ -21,7 +21,7 @@ struct EditView: View {
     
     @StateObject var locationEdit = LocationEdit()
     
-    private var regionEdit = RegionEdit()
+    @StateObject private var regionEdit = RegionEdit()
     
     @State private var name: String
     @State private var description: String
@@ -34,8 +34,14 @@ struct EditView: View {
                     TextField("Description", text: $description)
                 }
                 
-                NavigationLink(destination: PhotoView(newNameFile: "\(location.id).json")) {
+                NavigationLink(destination: PhotoViewCloud(location: location.id.uuidString)) {
                     Text("Choose Photo")
+                }
+                .navigationBarTitleDisplayMode(.inline)
+                .padding()
+                
+                NavigationLink(destination: VideoListView(location: location.id.uuidString)) {
+                    Text("Choose Video")
                 }
                 .navigationBarTitleDisplayMode(.inline)
                 .padding()

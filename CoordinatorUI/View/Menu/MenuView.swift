@@ -8,8 +8,38 @@
 import SwiftUI
 
 struct MenuView: View {
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+                
+        TabView {
+
+            StartMapView()
+                .tabItem {
+                    Label("Home", systemImage: "house")
+                }
+            if #available(iOS 17, *) {
+                MapSearchView()
+                    .tabItem {
+                        Label("Search", systemImage: "magnifyingglass.circle.fill")
+                    }
+            }
+            
+            PhotoViewCloud(location: "location")
+                .tabItem { Label("Photo", systemImage: "cloud.fill") }
+
+            ProfileView()
+                .tabItem {
+                    Label("Profile", systemImage: "person.fill")
+            }
+        }
+            .onAppear() {
+                UITabBar
+                    .appearance()
+                    .backgroundColor = .yellow.withAlphaComponent(0.3)
+            }
+            //.frame(height: 12)
+            //.accentColor(.blue)
+        .ignoresSafeArea()
     }
 }
 

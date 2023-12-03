@@ -12,6 +12,7 @@ import Firebase
 struct CoordinatorUIApp: App {
     @StateObject var locationFetcher = LocationFetcher()
     @StateObject var authViewModel = AuthViewModel()
+    @StateObject var viewModel = ViewModel()
     
     init() {
         FirebaseApp.configure()
@@ -27,6 +28,7 @@ struct CoordinatorUIApp: App {
                 }
                 .environmentObject(locationFetcher)
                 .environmentObject(authViewModel)
+                .environmentObject(viewModel)
         }
     }
 }

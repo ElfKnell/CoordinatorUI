@@ -8,8 +8,35 @@
 import SwiftUI
 
 struct FaceLoginView: View {
+    
+    @EnvironmentObject var viewModel: ViewModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+
+            ZStack {
+                
+                BackgroundView()
+                
+                VStack {
+                    Spacer()
+                    
+                    Text("Locked")
+                        .font(.system(size: 50,weight: .bold, design: .serif))
+                        .offset(x: -30)
+                    
+                    Spacer()
+                    
+                    Button {
+                        viewModel.authenticate()
+                    } label: {
+                        
+                        ButtonLabelView(title: "Unlock places", widthButton: 250)
+                       
+                    }
+                    
+                    Spacer()
+                }
+            }
     }
 }
 

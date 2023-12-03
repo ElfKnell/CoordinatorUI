@@ -54,7 +54,7 @@ enum PhotoOrCamera {
     }
 }
 
-extension PhotoView {
+//extension PhotoView {
     @MainActor class PhotoModel: ObservableObject {
         
         @Published var status = PhotoOrCamera.photo
@@ -171,4 +171,4 @@ extension PhotoView {
             }
         }
     }
-}
+//}

@@ -17,11 +17,7 @@ struct LoginView: View {
         NavigationStack {
             ZStack {
                 
-                
-                RoundedRectangle(cornerRadius: 30, style: .continuous)
-                    .foregroundStyle(.linearGradient(colors: [.blue, .red], startPoint: .topLeading, endPoint: .bottomTrailing))
-                    .frame(width: 1500, height: 390)
-                    .rotationEffect(.degrees(-110))
+                BackgroundView()
                 
                 VStack {
                     Spacer()
@@ -51,15 +47,9 @@ struct LoginView: View {
                             try await authViewModel.signIn(withEmail: email, password: password)
                         }
                     } label: {
-                        Text("Sign in")
-                            .bold()
-                            .frame(width: 170, height: 50)
-                            .font(.system(size: 30, design: .serif))
-                            .background(
-                                RoundedRectangle(cornerRadius: 15, style: .continuous)
-                                    .fill(.linearGradient(colors: [.red, .yellow], startPoint: .bottomTrailing, endPoint: .topLeading))
-                            )
-                            .foregroundColor(.black)
+                        
+                        ButtonLabelView(title: "Sign in", widthButton: 170)
+                       
                     }
                     .disabled(!formIsValid)
                     .opacity(formIsValid ? 1.0 : 0.5)

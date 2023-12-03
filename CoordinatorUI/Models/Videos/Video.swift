@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+struct Video: Identifiable, Decodable {
+    var id: String {
+        return NSUUID().uuidString
+    }
+    let videoURL: String
+}

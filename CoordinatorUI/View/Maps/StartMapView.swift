@@ -61,11 +61,19 @@ struct StartMapView: View {
                             }
                         }
                             .ignoresSafeArea()
-                        
-                        Circle()
-                            .fill(.blue)
-                            .opacity(0.3)
-                            .frame(width: 30, height: 30)
+                        ZStack {
+                            Circle()
+                                .foregroundColor(.blue.opacity(0.3))
+                                .frame(width: 30, height: 30)
+                            
+                            Circle()
+                                .foregroundColor(.white.opacity(0.5))
+                                .frame(width: 20, height: 20)
+                            
+                            Circle()
+                                .foregroundColor(.red.opacity(0.7))
+                                .frame(width: 10, height: 10)
+                        }
                         
                         VStack {
                             HStack {
@@ -100,7 +108,7 @@ struct StartMapView: View {
                                     
                                 }
                                 .padding()
-                                .background(.black.opacity(0.75))
+                                .background(.black.opacity(0.5))
                                 .foregroundColor(.white)
                                 .font(.title)
                                 .clipShape(Circle())
@@ -126,7 +134,7 @@ struct StartMapView: View {
                                     
                                 }
                                 .padding()
-                                .background(.black.opacity(0.75))
+                                .background(.black.opacity(0.5))
                                 .foregroundColor(.white)
                                 .font(.title)
                                 .clipShape(Circle())

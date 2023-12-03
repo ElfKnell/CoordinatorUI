@@ -15,11 +15,9 @@ extension PhotoView {
                 
                 ForEach(photoModel.myImages) { myImage in
                     VStack {
-                        Image(uiImage: myImage.image)
-                            .resizable()
-                            .scaledToFit()
-                            .clipShape(RoundedRectangle(cornerRadius: 15))
-                            .shadow(radius: 5)
+                        
+                        UIImageView(uiImage: myImage.image)
+                        
                         Text(myImage.name)
                             .foregroundColor(.white)
                     }
@@ -37,9 +35,7 @@ extension PhotoView {
         Group {
             if let image = photoModel.image {
                 NavigationLink(destination: BigPhotoView(img: image)) {
-                    Image(uiImage: image)
-                        .resizable()
-                        .scaledToFit()
+                    UIImageView(uiImage: image)
                 }
             } else {
                 Image(systemName: "photo.fill")

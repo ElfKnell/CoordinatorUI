@@ -13,7 +13,12 @@ struct StartView: View {
     var body: some View {
         Group {
             if authViewModel.userSession != nil {
-                ProfileView()
+                
+                if authViewModel.isValid {
+                    MenuView()
+                } else {
+                    AuditUserView()
+                }
             } else {
                 LoginView()
             }

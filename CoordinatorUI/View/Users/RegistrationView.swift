@@ -21,13 +21,7 @@ struct RegistrationView: View {
         NavigationStack {
             ZStack {
                 
-                
-                RoundedRectangle(cornerRadius: 30, style: .continuous)
-                    .foregroundStyle(.linearGradient(colors: [.blue, .red], startPoint: .topLeading, endPoint: .bottomTrailing))
-                    .frame(width: 1500, height: 390)
-                    .rotationEffect(.degrees(-110))
-                
-                
+                BackgroundView()
                 
                 VStack {
                     
@@ -71,15 +65,8 @@ struct RegistrationView: View {
                             try await viewModel.createUser(withEmail: email, password: password, fullname: name)
                         }
                     } label: {
-                        Text("Sign up")
-                            .bold()
-                            .frame(width: 170, height: 50)
-                            .font(.system(size: 30, design: .serif))
-                            .background(
-                                RoundedRectangle(cornerRadius: 15, style: .continuous)
-                                    .fill(.linearGradient(colors: [.red, .yellow], startPoint: .bottomTrailing, endPoint: .topLeading))
-                            )
-                            .foregroundColor(.black)
+                        
+                        ButtonLabelView(title: "Sign up", widthButton: 170)
                             .offset(x: 40, y: 30)
                         
                     }
